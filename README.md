@@ -1,3 +1,3 @@
 Ritter Cypress Automation test
 
-Web : https://magento.softwaretestingboard.com/
+Web reference for testing : https://magento.softwaretestingboard.com/
