@@ -89,7 +89,7 @@ describe("Select Product", () => {
     cy.get('#product-addtocart-button > span').click()
     cy.wait(5000)
     cy.get('.message-success > div').should('contain.text', 'You added Breathe-Easy Tank to your shopping cart.')
-    cy.wait(5000)
+    cy.wait(10000)
     cy.get('.counter-number').should('not.be.null')
   })
 
@@ -105,7 +105,7 @@ describe("Select Product", () => {
     cy.wait(5000)
     cy.get('#product-addtocart-button > span').click()
     cy.get('.message-success > div').should('contain.text', 'You added Cassius Sparring Tank to your shopping cart.')
-    cy.wait(5000)
+    cy.wait(10000)
     cy.get('.counter-number').should('not.be.null')
   })
 })
