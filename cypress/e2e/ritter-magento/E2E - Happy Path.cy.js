@@ -113,7 +113,7 @@ describe("Select Product", () => {
 describe("Cart", () => {
   let initialCount
   it("Open cart and remove item", () => {
-    cy.wait(3000)
+    cy.wait(5000)
     cy.get('.counter-number').then((counter) => {
       initialCount = parseInt(counter.text())
       expect(initialCount).to.be.greaterThan(0)
@@ -122,7 +122,7 @@ describe("Cart", () => {
     cy.get(':nth-child(7) > .secondary > .action > span').click()
     cy.wait(5000)
     cy.get(':nth-child(4) > .item-actions > td > .actions-toolbar > .action-delete').click()
-    cy.wait(8000)
+    cy.wait(10000)
     cy.get('.counter-number').then((counter) => {
       const updatedCount = parseInt(counter.text())
       expect(updatedCount).to.be.lessThan(initialCount)
