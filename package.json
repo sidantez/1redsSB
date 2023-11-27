@@ -181,7 +181,9 @@
     "yauzl": "^2.10.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "checkout":"cypress run --browser chrome --spec 'cypress/e2e/ritter-magento/SubmitOrder.cy.js'",
+    "e2e":"cypress run --browser chrome --spec 'cypress/e2e/ritter-magento/E2E-HappyPath.cy.js'"
   },
   "repository": {
     "type": "git",
