@@ -172,3 +172,40 @@ describe("Submit Order", () => {
         cy.get('.checkout-success > .actions-toolbar > div.primary > .action > span').should('exist').and('have.text', 'Continue Shopping')
     })
 })
+
+describe("NEG - Submit Order", () => {
+    beforeEach(() => {
+        // Visit the login page and log in with different account for negative test
+        cy.visit('https://magento.softwaretestingboard.com/customer/account/login')
+        cy.loginneg()
+        cy.wait(500)
+        cy.url().should("include", "/customer/account")
+        //choose a product to purchase until checkout
+        cy.visit('')
+        cy.get('#ui-id-5 > :nth-child(2)').click()
+        cy.get('dd > .items > :nth-child(1) > a').click()
+        cy.wait(3000)
+        cy.get(':nth-child(1) > .product-item-info > .details > .name > .product-item-link').click()
+        cy.wait(3000)
+        cy.get('#option-label-size-143-item-170').click() //choose product size
+        cy.wait(3000)
+        cy.get('#option-label-color-93-item-50').click() //choose product color
+        cy.wait(3000)
+        cy.get('#product-addtocart-button > span').click()
+        cy.get('.message-success > div').should('contain.text', 'You added Cassius Sparring Tank to your shopping cart.')
+        cy.wait(10000)
+        cy.get('.counter-number').should('not.be.null')
+        cy.get('.minicart-wrapper > .action').click()
+        cy.get('button[title="Proceed to Checkout"]').click()
+        cy.url().should("include", "/checkout/")
+        cy.wait(1000)
+    })
+    it("NEG | Checkout - without address", () => {
+        //checkout process until order successfully submitted
+        cy.visit('https://magento.softwaretestingboard.com/checkout/#shipping')
+        cy.wait(3000)
+        cy.get('button[type="submit"]').contains('Next').click()
+        cy.url().should("include", "/checkout/#shipping")
+        cy.get('.message.notice').should('exist').and('contain', 'The shipping method is missing. Select the shipping method and try again.')//error message appears
+    })
+})
